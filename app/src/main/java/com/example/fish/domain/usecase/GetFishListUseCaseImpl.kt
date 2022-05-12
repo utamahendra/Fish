@@ -7,7 +7,7 @@ import com.example.fish.domain.Either
 import com.example.fish.domain.model.FishData
 import com.example.fish.domain.source.FishDataSource
 
-class GetFishListUseCaseImpl(private val repository: FishDataSource): GetFishListUseCase {
+class GetFishListUseCaseImpl(private val repository: FishDataSource) : GetFishListUseCase {
 
     override suspend fun invoke(params: Unit): Either<List<FishData>, ViewError> {
         return try {
@@ -19,6 +19,14 @@ class GetFishListUseCaseImpl(private val repository: FishDataSource): GetFishLis
     }
 
     private val fishMapper: (FistListResponse) -> FishData = { fish ->
-        FishData(fish.uuid, fish.commodity, fish.provinceArea, fish.cityArea, fish.size, fish.price, fish.timestamp)
+        FishData(
+            fish.uuid,
+            fish.commodity,
+            fish.provinceArea,
+            fish.cityArea,
+            fish.size,
+            fish.price,
+            fish.timestamp
+        )
     }
 }
