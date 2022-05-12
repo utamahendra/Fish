@@ -10,5 +10,5 @@ interface FishDataSource {
 
     suspend fun getOptionArea(): OptionAreaResponse
 
-    suspend fun getFishList(): FistListResponse
+    suspend fun getFishList(): List<FistListResponse>
 }
