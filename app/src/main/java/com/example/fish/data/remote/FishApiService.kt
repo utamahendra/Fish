@@ -14,5 +14,5 @@ interface FishApiService {
     suspend fun getOptionArea(): OptionAreaResponse
 
     @GET("list")
-    suspend fun getFishList(): FistListResponse
+    suspend fun getFishList(): List<FistListResponse>
 }

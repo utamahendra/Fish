@@ -12,5 +12,5 @@ class FishRepository(private val fishApiService: FishApiService): FishDataSource
 
     override suspend fun getOptionArea(): OptionAreaResponse = fishApiService.getOptionArea()
 
-    override suspend fun getFishList(): FistListResponse = fishApiService.getFishList()
+    override suspend fun getFishList(): List<FistListResponse> = fishApiService.getFishList()
 }

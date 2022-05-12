@@ -12,7 +12,13 @@ class GetFishListUseCaseImpl(private val repository: FishDataSource) : GetFishLi
     override suspend fun invoke(params: Unit): Either<List<FishData>, ViewError> {
         return try {
             val result = repository.getFishList()
-            Either.Success(result.map(fishMapper))
+            Either.Success(result.filter {
+                !it.uuid.isNullOrBlank()
+                        && !it.commodity.isNullOrBlank()
+                        && (!it.provinceArea.isNullOrBlank() || !it.cityArea.isNullOrBlank())
+                        && !it.size.isNullOrBlank()
+                        && !it.price.isNullOrBlank()
+            }.map(fishMapper))
         } catch (e: Exception) {
             Either.Fail(e.asErrorObject())
         }
@@ -20,13 +26,12 @@ class GetFishListUseCaseImpl(private val repository: FishDataSource) : GetFishLi
 
     private val fishMapper: (FistListResponse) -> FishData = { fish ->
         FishData(
-            fish.uuid,
-            fish.commodity,
+            fish.uuid.toString(),
+            fish.commodity.toString(),
             fish.provinceArea,
             fish.cityArea,
-            fish.size,
-            fish.price,
-            fish.timestamp
+            fish.size.toString(),
+            fish.price.toString()
         )
     }
 }
