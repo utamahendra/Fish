@@ -85,7 +85,7 @@ class GetFishListUseCaseTest : KoinTest {
     }
 
     @Test
-    fun `internal server error get users`() {
+    fun `internal server error get fish list`() {
         runTest {
             val expected = Either.Fail(ViewError(ErrorCode.GLOBAL_UNKNOWN_ERROR))
             BDDMockito.given(repository.getFishList()).willAnswer { throw RuntimeException() }
@@ -97,7 +97,7 @@ class GetFishListUseCaseTest : KoinTest {
     }
 
     @Test
-    fun `IO error get users`() {
+    fun `IO error get fish list`() {
         runTest {
             val expected = Either.Fail(ViewError(ErrorCode.GLOBAL_INTERNET_ERROR))
             BDDMockito.given(repository.getFishList()).willAnswer { throw IOException() }

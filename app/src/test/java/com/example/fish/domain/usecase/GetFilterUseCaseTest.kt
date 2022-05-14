@@ -112,7 +112,7 @@ class GetFilterUseCaseTest: KoinTest {
     }
 
     @Test
-    fun `internal server error get users`() {
+    fun `internal server error get filter`() {
         runTest {
             val expected = Either.Fail(ViewError(ErrorCode.GLOBAL_UNKNOWN_ERROR))
             BDDMockito.given(repository.getOptionArea()).willAnswer { throw RuntimeException() }
@@ -125,7 +125,7 @@ class GetFilterUseCaseTest: KoinTest {
     }
 
     @Test
-    fun `IO error get users`() {
+    fun `IO error get filter`() {
         runTest {
             val expected = Either.Fail(ViewError(ErrorCode.GLOBAL_INTERNET_ERROR))
             BDDMockito.given(repository.getOptionArea()).willAnswer { throw IOException() }

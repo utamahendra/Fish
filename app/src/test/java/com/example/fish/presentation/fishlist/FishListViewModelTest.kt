@@ -90,7 +90,7 @@ class FishListViewModelTest : KoinTest {
     }
 
     @Test
-    fun `on get users empty`() {
+    fun `on get fish list empty`() {
         runTest {
             BDDMockito.given(getFishListUseCase.invoke(Unit)).willReturn(Either.Success(listOf()))
             val expected = listOf<ListViewState<List<FishData>>>(
