@@ -7,7 +7,5 @@ val useCaseModule = module {
 
     factory { GetFishListUseCaseImpl(get()) as GetFishListUseCase }
 
-    factory { GetOptionAreaUseCaseImpl(get()) as GetOptionAreaUseCase }
-
-    factory { GetOptionSizeUseCaseImpl(get()) as GetOptionSizeUseCase }
+    factory { GetFilterUseCaseImpl(get()) as GetFilterUseCase }
 }

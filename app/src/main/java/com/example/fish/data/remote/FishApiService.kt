@@ -8,10 +8,10 @@ import retrofit2.http.GET
 interface FishApiService {
 
     @GET("option_size")
-    suspend fun getOptionSize(): OptionSizeResponse
+    suspend fun getOptionSize(): List<OptionSizeResponse>
 
     @GET("option_area")
-    suspend fun getOptionArea(): OptionAreaResponse
+    suspend fun getOptionArea(): List<OptionAreaResponse>
 
     @GET("list")
     suspend fun getFishList(): List<FistListResponse>
