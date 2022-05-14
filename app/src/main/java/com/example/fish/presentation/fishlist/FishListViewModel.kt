@@ -23,7 +23,11 @@ class FishListViewModel(
         viewModelScope.launch {
             fishesState.postValue(ListViewState.Loading())
             getFishListUseCase.invoke(Unit).handleResult({ fishData ->
-                fishesState.postValue(ListViewState.Success(fishData))
+                if (fishData.isEmpty()) {
+                    fishesState.postValue(ListViewState.EmptyData())
+                } else {
+                    fishesState.postValue(ListViewState.Success(fishData))
+                }
             }, { viewError ->
                 fishesState.postValue(ListViewState.Error(viewError))
             })
